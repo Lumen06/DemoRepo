@@ -1,7 +1,10 @@
-package homework;
+package homework.Main;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
+import homework.City.City;
+import homework.Country.Country;
+import homework.Order.Order;
+import homework.Passport.Passport;
+import homework.User.User;
 
 public class Main {
     public static void main(String[] args) {

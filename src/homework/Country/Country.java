@@ -1,16 +1,45 @@
-package homework;
+package homework.Country;
+
+import homework.City.City;
 
 public class Country {
 
+    private Long id;
     private String countryName;
     private String language;
     private City[] cities;
+    private City capital;
 
 
     public Country(String countryName, String language, City[] cities) {
         this.countryName = countryName;
         this.language = language;
         this.cities = cities;
+    }
+
+
+    public Country(Long id, String countryName, String language, City[] cities, City capital) {
+        this.id = id;
+        this.countryName = countryName;
+        this.language = language;
+        this.cities = cities;
+        this.capital = capital;
+    }
+
+    public City getCapital() {
+        return capital;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCapital(City capital) {
+        this.capital = capital;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getCountryName() {

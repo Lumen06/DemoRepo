@@ -1,17 +1,34 @@
-package homework;
+package homework.Order;
+
+import homework.City.City;
+import homework.Country.Country;
+import homework.User.User;
 
 public class Order {
 
+    private Long id;
     private String price;
     private User user;
     private Country[] countries;
     private City[] cities;
+
+    public Order(Long id, String price, User user, Country[] countries, City[] cities) {
+        this.id = id;
+        this.price = price;
+        this.user = user;
+        this.countries = countries;
+        this.cities = cities;
+    }
 
     public Order(String price, User user, Country[] countries, City[] cities) {
         this.price = price;
         this.user = user;
         this.countries = countries;
         this.cities = cities;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getPrice() {
@@ -38,11 +55,11 @@ public class Order {
             countryList += country.getCountryName() + " ";
         }
 
-        String ciiesList = "";
+        String citiesList = "";
         for (City city: cities) {
-            ciiesList += city.getName() + " ";
+            citiesList += city.getName() + " ";
         }
 
-        return "Cтоимость: " + price + "\nЗаказчик " + user.toString() + "\nСтрана(-ы): " + countryList + "\nГород(-а): " + ciiesList;
+        return "Cтоимость: " + price + "\nЗаказчик " + user.toString() + "\nСтрана(-ы): " + countryList + "\nГород(-а): " + citiesList;
     }
 }

@@ -1,15 +1,27 @@
-package homework;
+package homework.City;
 
 public class City {
 
+    private Long id;
     private String name;
     private long population;
     private boolean isCapital;
+
+    public City(Long id, String name, long population, boolean isCapital) {
+        this.id = id;
+        this.name = name;
+        this.population = population;
+        this.isCapital = isCapital;
+    }
 
     public City(String name, long population, boolean isCapital) {
         this.name = name;
         this.population = population;
         this.isCapital = isCapital;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
