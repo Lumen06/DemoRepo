@@ -1,15 +1,14 @@
-package homework.User;
+package homework.User.domain;
 
-import homework.Passport.Passport;
-import homework.Race;
+import homework.Passport.domain.Passport;
 
 public class RegularUser extends User {
 
     private String job;
     private int earnings;
 
-    public RegularUser(Long id, String name, String lastName, Passport passport, Race race, String job, int earnings) {
-        super(id, name, lastName, passport, race);
+    public RegularUser(String name, String lastName, Passport passport, Race race, String job, int earnings) {
+        super(name, lastName, passport, race);
         this.job = job;
         this.earnings = earnings;
     }

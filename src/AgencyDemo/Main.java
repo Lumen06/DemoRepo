@@ -1,17 +1,17 @@
-package homework.Main;
+package AgencyDemo;
 
-import homework.City.City;
-import homework.Country.Country;
-import homework.Order.Order;
-import homework.Passport.Passport;
-import homework.User.User;
+import homework.City.domain.City;
+import homework.Country.domain.Country;
+import homework.Order.domain.Order;
+import homework.Passport.domain.Passport;
+import homework.User.domain.User;
 
 public class Main {
     public static void main(String[] args) {
 
         Passport passport = new Passport(1, 2);
 
-        User user = new User("Sergey", "Vladimir", passport);
+        //User user = new User("Sergey", "Vladimir", passport);
 
         City city = new City("London", 86000000, true);
         City city1 = new City("Scotland", 5373000, false);
@@ -26,8 +26,8 @@ public class Main {
 
         Country country1 = new Country("Russia", "RUS", new City[]{city3, city4, city5});
 
-        Order order = new Order("22 000", user, new Country[]{country, country1}, new City[]{country.getCities()[0], country1.getCities()[2]});
+        //Order order = new Order("22 000", user, new Country[]{country, country1}, new City[]{country.getCities()[0], country1.getCities()[2]});
 
-        System.out.println(order.toString());
+        //System.out.println(order.toString());
     }
 }

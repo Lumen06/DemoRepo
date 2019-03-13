@@ -1,12 +1,12 @@
-package homework.Order;
+package homework.Order.domain;
 
-import homework.City.City;
-import homework.Country.Country;
-import homework.User.User;
+import homework.City.domain.City;
+import homework.Common.Business.domain.BaseDomain;
+import homework.Country.domain.Country;
+import homework.User.domain.User;
 
-public class Order {
+public class Order extends BaseDomain {
 
-    private Long id;
     private String price;
     private User user;
     private Country[] countries;

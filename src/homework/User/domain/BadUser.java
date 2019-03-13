@@ -1,14 +1,13 @@
-package homework.User;
+package homework.User.domain;
 
-import homework.Passport.Passport;
-import homework.Race;
+import homework.Passport.domain.Passport;
 
-public class BadUser extends User{
+public class BadUser extends User {
 
     private int agression;
 
-    public BadUser(Long id, String name, String lastName, Passport passport, Race race, int agression) {
-        super(id, name, lastName, passport, race);
+    public BadUser(String name, String lastName, Passport passport, Race race, int agression) {
+        super(name, lastName, passport, race);
         this.agression = agression;
     }
 

@@ -1,10 +1,13 @@
 package homework.Storage;
 
-import homework.City.City;
-import homework.Country.Country;
-import homework.Order.Order;
-import homework.Passport.Passport;
-import homework.User.User;
+import homework.City.domain.City;
+import homework.Country.domain.Country;
+import homework.Order.domain.Order;
+import homework.Passport.domain.Passport;
+import homework.User.domain.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Storage {
 
@@ -14,4 +17,10 @@ public class Storage {
     public static Order[] orders = new Order[CAPACITY];
     public static User[] users  = new User[CAPACITY];
     public static Passport[] passports = new Passport[CAPACITY];
+
+    public static List<City> citiesList = new ArrayList<>();
+    public static List<Country> countriesList = new ArrayList<>();
+    public static List<Order> ordersList = new ArrayList<>();
+    public static List<Passport> passportsList = new ArrayList<>();
+    public static List<User> usersList = new ArrayList<>();
 }

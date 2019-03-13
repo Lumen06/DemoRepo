@@ -1,8 +1,10 @@
-package homework.City;
+package homework.City.domain;
 
-public class City {
+import homework.Common.Business.domain.BaseDomain;
 
-    private Long id;
+public class City extends BaseDomain {
+
+
     private String name;
     private long population;
     private boolean isCapital;

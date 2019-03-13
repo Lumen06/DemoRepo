@@ -1,10 +1,10 @@
-package homework.Country;
+package homework.Country.domain;
 
-import homework.City.City;
+import homework.City.domain.City;
+import homework.Common.Business.domain.BaseDomain;
 
-public class Country {
+public class Country extends BaseDomain {
 
-    private Long id;
     private String countryName;
     private String language;
     private City[] cities;
