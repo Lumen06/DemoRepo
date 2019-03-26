@@ -2,7 +2,7 @@ package homework.Order.domain;
 
 import homework.City.domain.City;
 import homework.Common.Business.domain.BaseDomain;
-import homework.Country.domain.Country;
+import homework.Country.domain.BaseCountry.Country;
 import homework.User.domain.User;
 
 public class Order extends BaseDomain {

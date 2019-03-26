@@ -2,6 +2,7 @@ package homework.Order.Repo.OrderMemoryRepo;
 
 import homework.Common.Solutions.Utils.Utils.ArrayUtils;
 import homework.Common.Solutions.Utils.Utils.StringUtils;
+import homework.Country.domain.BaseCountry.Country;
 import homework.Order.Repo.OrderRepo.OrderRepo;
 import homework.Order.domain.Order;
 import homework.Order.search.OrderSearchCondition;
@@ -12,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static homework.Storage.Storage.countries;
 import static homework.Storage.Storage.orders;
 
 public class OrderArrayMemoryRepo implements OrderRepo {
@@ -46,6 +48,25 @@ public class OrderArrayMemoryRepo implements OrderRepo {
         }
 
         return null;
+    }
+
+    @Override
+    public List<Order> findByUserId(long userId) {
+
+        List<Order> foundOrders = new ArrayList<>();
+
+        for (Order order : orders) {
+            if (order.getUser().getId().equals(userId)) {
+                foundOrders.add(order);
+            }
+        }
+
+        return foundOrders;
+    }
+
+    @Override
+    public void deleteByUserId(long userId) {
+
     }
 
     @Override
@@ -103,6 +124,44 @@ public class OrderArrayMemoryRepo implements OrderRepo {
     }
 
     @Override
+    public int countByCountry(long countryId) {
+        int count = 0;
+        for (Order order : orders) {
+            for (int i = 0; i < order.getCountries().length; i++) {
+                if (countryId == order.getCountries()[i].getId()) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public int countByCity(long cityId) {
+
+        int count = 0;
+        for (Order order : orders) {
+            for (int i = 0; i < order.getCities().length; i++) {
+                if (cityId == order.getCountries()[i].getId()) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public int countByUser(long userId) {
+        int count = 0;
+        for (Order order : orders) {
+            if (userId == order.getUser().getId()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
     public void deleteById(Long id) {
         Integer index = findOrderByIndex(id);
         deleteOrderByIndex(index);
@@ -130,5 +189,11 @@ public class OrderArrayMemoryRepo implements OrderRepo {
     public void deleteOrderByIndex(int index) {
         ArrayUtils.removeElement(orders, index);
         orderIndex--;
+    }
+
+    @Override
+    public List<Order> findAll() {
+        return new ArrayList<>(Arrays.asList(orders));
+
     }
 }

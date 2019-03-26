@@ -2,8 +2,7 @@ package homework.Order.search;
 
 import homework.City.domain.City;
 import homework.Common.Business.Search.BaseSearchCondition;
-import homework.Country.domain.Country;
-import homework.Order.domain.Order;
+import homework.Country.domain.BaseCountry.Country;
 import homework.User.domain.User;
 
 public class OrderSearchCondition extends BaseSearchCondition<Long> {

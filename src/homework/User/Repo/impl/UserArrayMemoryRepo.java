@@ -140,4 +140,9 @@ public class UserArrayMemoryRepo implements UserRepo {
         ArrayUtils.removeElement(users, index);
         userIndex--;
     }
+
+    @Override
+    public List<User> findAll() {
+        return new ArrayList<>(Arrays.asList(users));
+    }
 }

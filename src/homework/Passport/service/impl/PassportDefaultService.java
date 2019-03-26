@@ -59,6 +59,10 @@ public class PassportDefaultService implements PassportService {
             passportRepo.update(passport);
         }
 
+    }
 
+    @Override
+    public List<Passport> findAll() {
+        return passportRepo.findAll();
     }
 }

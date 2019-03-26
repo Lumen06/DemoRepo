@@ -1,30 +1,18 @@
-package homework.Country.domain;
+package homework.Country.domain.BaseCountry;
 
 import homework.City.domain.City;
 import homework.Common.Business.domain.BaseDomain;
+import homework.Country.domain.CountryTemperature;
 
-public class Country extends BaseDomain {
+public abstract class Country extends BaseDomain {
 
     private String countryName;
     private String language;
     private City[] cities;
     private City capital;
+    private CountryTemperature discriminator;
 
 
-    public Country(String countryName, String language, City[] cities) {
-        this.countryName = countryName;
-        this.language = language;
-        this.cities = cities;
-    }
-
-
-    public Country(Long id, String countryName, String language, City[] cities, City capital) {
-        this.id = id;
-        this.countryName = countryName;
-        this.language = language;
-        this.cities = cities;
-        this.capital = capital;
-    }
 
     public City getCapital() {
         return capital;
@@ -52,6 +40,22 @@ public class Country extends BaseDomain {
 
     public City[] getCities() {
         return cities;
+    }
+
+    public void setCities(City[] cities) {
+        this.cities = cities;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public void setDiscriminator(CountryTemperature discriminator) {
+        this.discriminator = discriminator;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 
     @Override

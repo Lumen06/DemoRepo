@@ -9,6 +9,9 @@ public class City extends BaseDomain {
     private long population;
     private boolean isCapital;
 
+    public City() {
+    }
+
     public City(Long id, String name, long population, boolean isCapital) {
         this.id = id;
         this.name = name;
@@ -36,6 +39,18 @@ public class City extends BaseDomain {
 
     public boolean isCapital() {
         return isCapital;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPopulation(long population) {
+        this.population = population;
+    }
+
+    public void setCapital(boolean capital) {
+        isCapital = capital;
     }
 
     @Override

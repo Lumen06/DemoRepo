@@ -3,10 +3,11 @@ package homework.Country.Repo.impl;
 import homework.Common.Solutions.Utils.Utils.ArrayUtils;
 import homework.Common.Solutions.Utils.Utils.StringUtils;
 import homework.Country.Repo.CountryRepo.CountryRepo;
-import homework.Country.domain.Country;
+import homework.Country.domain.BaseCountry.Country;
 import homework.Country.search.CountrySearchCondition;
 import homework.Storage.SequenceGenerator;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -128,5 +129,10 @@ public class CountryArrayMemoryRepo implements CountryRepo {
     public void deleteCountryByIndex(int index) {
         ArrayUtils.removeElement(countries, index);
         countryIndex--;
+    }
+
+    @Override
+    public List<Country> findAll() {
+        return new ArrayList<>(Arrays.asList(countries));
     }
 }

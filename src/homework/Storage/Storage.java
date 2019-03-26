@@ -1,7 +1,7 @@
 package homework.Storage;
 
 import homework.City.domain.City;
-import homework.Country.domain.Country;
+import homework.Country.domain.BaseCountry.Country;
 import homework.Order.domain.Order;
 import homework.Passport.domain.Passport;
 import homework.User.domain.User;

@@ -3,16 +3,18 @@ package homework.Order.service.impl;
 import homework.City.Repo.CityRepo.CityRepo;
 import homework.City.domain.City;
 import homework.Country.Repo.CountryRepo.CountryRepo;
-import homework.Country.domain.Country;
+import homework.Country.domain.BaseCountry.Country;
 import homework.Order.Repo.OrderRepo.OrderRepo;
 import homework.Order.domain.Order;
 import homework.Order.search.OrderSearchCondition;
 import homework.Order.service.OrderService.OrderService;
 
+import java.util.Collections;
 import java.util.List;
 
 
 public class OrderDefaultMemoryService implements OrderService {
+
 
     private final OrderRepo orderRepo;
     private final CountryRepo countryRepo;
@@ -77,6 +79,22 @@ public class OrderDefaultMemoryService implements OrderService {
     }
 
     @Override
+    public void deleteByUserId(Long userId) {
+        if (userId != null) {
+            orderRepo.deleteByUserId(userId);
+        }
+    }
+
+    @Override
+    public List<Order> getOrdersByUser(Long userId) {
+        if (userId != null) {
+            orderRepo.findByUserId(userId);
+        }
+
+        return Collections.emptyList();
+    }
+
+    @Override
     public void printAll() {
         orderRepo.printAll();
     }
@@ -86,5 +104,10 @@ public class OrderDefaultMemoryService implements OrderService {
         if (order != null) {
             orderRepo.update(order);
         }
+    }
+
+    @Override
+    public List<Order> findAll() {
+        return orderRepo.findAll();
     }
 }

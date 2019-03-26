@@ -129,4 +129,10 @@ public class PassportArrayMemoryRepo implements PassportRepo {
         ArrayUtils.removeElement(passports, index);
         passportIndex--;
     }
+
+    @Override
+    public List<Passport> findAll() {
+        return new ArrayList<>(Arrays.asList(passports));
+
+    }
 }

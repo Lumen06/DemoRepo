@@ -3,22 +3,32 @@ package homework.Country.service.impl;
 import homework.City.Repo.CityRepo.CityRepo;
 import homework.City.Repo.impl.CityListMemoryRepo;
 import homework.City.domain.City;
+import homework.City.service.CityService.CityService;
+import homework.Common.Business.Exceptions.TravelAgencyUncheckedException;
 import homework.Country.Repo.CountryRepo.CountryRepo;
-import homework.Country.domain.Country;
+import homework.Country.domain.BaseCountry.Country;
 import homework.Country.Repo.impl.CountryArrayMemoryRepo;
+import homework.Country.exception.DeleteCountryException;
 import homework.Country.search.CountrySearchCondition;
 import homework.Country.service.CounryService.CountryService;
+import homework.Order.Repo.OrderRepo.OrderRepo;
 
-import java.util.List;
+import java.lang.reflect.Array;
+import java.util.*;
+
+import static homework.Country.exception.CountryExceptionMeta.DELETE_COUNTRY_CONSTRAINT_ERROR;
 
 public class CountryDefaultService implements CountryService {
 
-    private final CityRepo cityRepo;
+    private final CityService cityService;
     private final CountryRepo countryRepo;
+    private final OrderRepo orderRepo;
 
-    public CountryDefaultService(CityListMemoryRepo cityRepo, CountryArrayMemoryRepo countryRepo) {
-        this.cityRepo = cityRepo;
+
+    public CountryDefaultService(CityService cityService, CountryRepo countryRepo, OrderRepo orderRepo) {
+        this.cityService = cityService;
         this.countryRepo = countryRepo;
+        this.orderRepo = orderRepo;
     }
 
     @Override
@@ -28,14 +38,25 @@ public class CountryDefaultService implements CountryService {
         }
         if (country.getCities() != null) {
             for (City city : country.getCities()) {
-                this.cityRepo.add(city);
+                this.cityService.add(city);
             }
 
         }
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id) throws TravelAgencyUncheckedException {
+
+        if (id != null) {
+            boolean noOrders = orderRepo.countByCountry(id) == 0;
+
+            if (noOrders) {
+                removeAllCitiesFromCountry(id);
+                countryRepo.deleteById(id);
+            } else {
+                throw new DeleteCountryException(DELETE_COUNTRY_CONSTRAINT_ERROR);
+            }
+        }
         if (id != null) {
             countryRepo.deleteById(id);
         }
@@ -73,5 +94,23 @@ public class CountryDefaultService implements CountryService {
         if (country != null) {
             countryRepo.update(country);
         }
+    }
+
+    @Override
+    public void removeAllCitiesFromCountry(Long countyId) throws TravelAgencyUncheckedException {
+        Country country = findById(countyId);
+
+        if (country != null) {
+            List<City> listOfCities = country.getCities() == null ? Collections.emptyList() : Arrays.asList(country.getCities());
+
+            for (City city : listOfCities) {
+                cityService.deleteById(city.getId());
+            }
+        }
+    }
+
+    @Override
+    public List<Country> findAll() {
+        return countryRepo.findAll();
     }
 }
